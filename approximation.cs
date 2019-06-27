@@ -90,6 +90,21 @@ namespace approximation
             }
         }
 
+        private void plot_graphics()
+        {
+            chart_c.Series["input_s"].Points.Clear();
+            chart_c.Series["output_s"].Points.Clear();
+            chart_c.Series["input_points_s"].Points.Clear();
+            chart_c.Series["output_points_s"].Points.Clear();
+            for (int i = 0; i < input_size; i++)
+            {
+                chart_c.Series["input_s"].Points.AddXY(input_x[i], input_y[i]);
+                chart_c.Series["output_s"].Points.AddXY(input_x[i], output[i]);
+                chart_c.Series["input_points_s"].Points.AddXY(input_x[i], input_y[i]);
+                chart_c.Series["output_points_s"].Points.AddXY(input_x[i], output[i]);
+            }
+        }
+
         private void calculate_b_Click(object sender, EventArgs e)
         {
             if (input_x_t.Text == "")
@@ -105,6 +120,7 @@ namespace approximation
                 input_to_arrays(input_x_t.Text, input_y_t.Text);
                 calculate_a_b();
                 calculate_linear_approximation();
+                plot_graphics();
                 String output_s = "";
                 output_s = output_s + "a = " + a.ToString() + ", ";
                 output_s = output_s + "b = " + b.ToString() + ", ";
