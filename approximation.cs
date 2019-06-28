@@ -15,7 +15,6 @@ namespace approximation
         Int32[] input_x = new Int32[256];
         Int32[] input_y = new Int32[256];
         Int32 input_size = 0;
-        float[] output = new float[256];
         float a = 0;
         float b = 0;
 
@@ -81,28 +80,19 @@ namespace approximation
             a = (input_size * sigma_x_y - sigma_x * sigma_y) / (input_size * sigma_x_2 - sigma_x * sigma_x);
             b = (sigma_y - a * sigma_x) / input_size;
         }
-        
-        private void calculate_linear_approximation()
-        {
-            for (int i = 0; i < input_size; i++)
-            {
-                output[i] = input_y[i] - (a * input_x[i] + b);
-            }
-        }
 
         private void plot_graphics()
         {
             chart_c.Series["input_s"].Points.Clear();
-            chart_c.Series["output_s"].Points.Clear();
             chart_c.Series["input_points_s"].Points.Clear();
-            chart_c.Series["output_points_s"].Points.Clear();
+            chart_c.Series["output_s"].Points.Clear();
             for (int i = 0; i < input_size; i++)
             {
                 chart_c.Series["input_s"].Points.AddXY(input_x[i], input_y[i]);
-                chart_c.Series["output_s"].Points.AddXY(input_x[i], output[i]);
                 chart_c.Series["input_points_s"].Points.AddXY(input_x[i], input_y[i]);
-                chart_c.Series["output_points_s"].Points.AddXY(input_x[i], output[i]);
             }
+            chart_c.Series["output_s"].Points.AddXY(input_x[0], a * input_x[0] + b);
+            chart_c.Series["output_s"].Points.AddXY(input_x[input_size - 1], a * input_x[input_size - 1] + b);
         }
 
         private void calculate_b_Click(object sender, EventArgs e)
@@ -117,23 +107,19 @@ namespace approximation
             }
             else
             {
+                if (welcome_l.Visible)
+                {
+                    welcome_l.Hide();
+                }
+                if (!chart_c.Visible)
+                {
+                    chart_c.Show();
+                }
                 input_to_arrays(input_x_t.Text, input_y_t.Text);
                 calculate_a_b();
-                calculate_linear_approximation();
                 plot_graphics();
                 String output_s = "";
-                output_s = output_s + "a = " + a.ToString() + ", ";
-                output_s = output_s + "b = " + b.ToString() + ", ";
-                output_s = output_s + "yi-(axi+b) = { ";
-                for (int i = 0; i < input_size; i++)
-                {
-                    output_s = output_s + output[i].ToString();
-                    if (i != input_size - 1)
-                    {
-                        output_s = output_s + ", ";
-                    }
-                }
-                output_s = output_s + " }";
+                output_s = output_s + "y = " + a.ToString() + "x + " + b.ToString();
                 output_t.Text = output_s;
             }
         }

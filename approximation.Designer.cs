@@ -33,7 +33,6 @@
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.input_x_t = new System.Windows.Forms.TextBox();
             this.output_t = new System.Windows.Forms.TextBox();
             this.linear = new System.Windows.Forms.Button();
@@ -41,6 +40,7 @@
             this.x_l = new System.Windows.Forms.Label();
             this.y_l = new System.Windows.Forms.Label();
             this.chart_c = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.welcome_l = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chart_c)).BeginInit();
             this.SuspendLayout();
             // 
@@ -60,6 +60,7 @@
             this.output_t.ReadOnly = true;
             this.output_t.Size = new System.Drawing.Size(280, 13);
             this.output_t.TabIndex = 3;
+            this.output_t.Text = "Ready.";
             // 
             // linear
             // 
@@ -100,6 +101,7 @@
             // chart_c
             // 
             this.chart_c.BackColor = System.Drawing.Color.Transparent;
+            chartArea1.BackColor = System.Drawing.Color.Transparent;
             chartArea1.Name = "chart_area_ca";
             this.chart_c.ChartAreas.Add(chartArea1);
             legend1.Alignment = System.Drawing.StringAlignment.Center;
@@ -117,35 +119,42 @@
             series1.Color = System.Drawing.Color.Green;
             series1.Legend = "legend_l";
             series1.Name = "input_s";
+            series2.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            series2.BorderWidth = 2;
             series2.ChartArea = "chart_area_ca";
             series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
             series2.Color = System.Drawing.Color.Green;
             series2.IsVisibleInLegend = false;
             series2.Legend = "legend_l";
-            series2.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Square;
             series2.Name = "input_points_s";
+            series3.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
             series3.BorderWidth = 2;
             series3.ChartArea = "chart_area_ca";
             series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series3.Color = System.Drawing.Color.DarkRed;
+            series3.IsVisibleInLegend = false;
             series3.Legend = "legend_l";
             series3.Name = "output_s";
-            series4.ChartArea = "chart_area_ca";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series4.Color = System.Drawing.Color.DarkRed;
-            series4.IsVisibleInLegend = false;
-            series4.Legend = "legend_l";
-            series4.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Square;
-            series4.Name = "output_points_s";
             this.chart_c.Series.Add(series1);
             this.chart_c.Series.Add(series2);
             this.chart_c.Series.Add(series3);
-            this.chart_c.Series.Add(series4);
             this.chart_c.Size = new System.Drawing.Size(280, 173);
             this.chart_c.TabIndex = 6;
             this.chart_c.TabStop = false;
             this.chart_c.Text = "chart";
             this.chart_c.TextAntiAliasingQuality = System.Windows.Forms.DataVisualization.Charting.TextAntiAliasingQuality.SystemDefault;
+            this.chart_c.Visible = false;
+            // 
+            // welcome_l
+            // 
+            this.welcome_l.AutoSize = true;
+            this.welcome_l.Location = new System.Drawing.Point(61, 65);
+            this.welcome_l.Name = "welcome_l";
+            this.welcome_l.Size = new System.Drawing.Size(169, 39);
+            this.welcome_l.TabIndex = 7;
+            this.welcome_l.Text = "To approximate the data, put them\r\nin the input fields \"x\" and \"y\"\r\nthen press th" +
+    "e \"linear\" button";
+            this.welcome_l.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // approximation
             // 
@@ -153,6 +162,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 252);
+            this.Controls.Add(this.welcome_l);
             this.Controls.Add(this.chart_c);
             this.Controls.Add(this.y_l);
             this.Controls.Add(this.x_l);
@@ -180,6 +190,7 @@
         private System.Windows.Forms.Label x_l;
         private System.Windows.Forms.Label y_l;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart_c;
+        private System.Windows.Forms.Label welcome_l;
     }
 }
 
