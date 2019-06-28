@@ -102,7 +102,11 @@
             this.chart_c.BackColor = System.Drawing.Color.Transparent;
             chartArea1.Name = "chart_area_ca";
             this.chart_c.ChartAreas.Add(chartArea1);
+            legend1.Alignment = System.Drawing.StringAlignment.Center;
             legend1.BackColor = System.Drawing.Color.Transparent;
+            legend1.DockedToChartArea = "chart_area_ca";
+            legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
+            legend1.IsDockedInsideChartArea = false;
             legend1.Name = "legend_l";
             this.chart_c.Legends.Add(legend1);
             this.chart_c.Location = new System.Drawing.Point(2, 0);
