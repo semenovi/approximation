@@ -119,7 +119,15 @@ namespace approximation
                 calculate_a_b();
                 plot_graphics();
                 String output_s = "";
-                output_s = output_s + "y = " + a.ToString() + "x + " + b.ToString();
+                output_s = output_s + "y = " + a.ToString();
+				if (b > 0)
+				{
+					output_s = output_s + "x + " + b.ToString();
+				}
+				else if (b < 0)
+				{
+					output_s = output_s + "x - " + (0.0 - b).ToString();
+				}
                 output_t.Text = output_s;
             }
         }
